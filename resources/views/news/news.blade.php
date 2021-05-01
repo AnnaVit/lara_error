@@ -5,11 +5,11 @@
     @forelse($news as $id => $item)
         @php
 
-            $url = route('news::category::idCategory::id', ['idCategory' => $id, 'id' => $item['id']]);
+            $url = route('news::category::idCategory::id', ['idCategory' => $idCategory, 'id' => $id]);
         @endphp
 
         <div>
-            <a href="{{$url}}">{{$item['title']}}</a>
+            <a href="{{$url}}">{{$item}}</a>
         </div>
 
     @empty

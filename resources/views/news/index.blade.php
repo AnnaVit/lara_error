@@ -5,6 +5,7 @@
     @foreach($categories as $category => $item)
         @php
             $url = route('news::category::idCategory', ['idCategory' => $category]);
+
         @endphp
 
         <div class="category">
