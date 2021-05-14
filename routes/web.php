@@ -16,17 +16,7 @@ use App\Http\Controllers\MainController;
 |
 */
 
-/*Route::get('/', function () {
-    //return view('welcome');
-    echo "ПРИВЕТ";
-});*/
-
 Route::get('/', [MainController::class, 'index']);
-
-//Route::get(('/'), function()
-//{
-//    echo 'bla-bla-';
-//});
 
 /** Админка новостей */
 Route::group([
@@ -39,9 +29,9 @@ Route::group([
         ->name('create');
     Route::post('/save', [ AdminNewsController::class, 'save'])
         ->name('save');
-    Route::get('/update', [ AdminNewsController::class, 'update'])
+    Route::post('/update', [ AdminNewsController::class, 'update'])
         ->name('update');
-    Route::get('/delete', [ AdminNewsController::class, 'delete'])
+    Route::post('/delete', [ AdminNewsController::class, 'delete'])
         ->name('delete');
     Route::get('/categoryAdd', [ AdminNewsController::class, 'categoryAdd'])
         ->name('categoryAdd');
@@ -65,3 +55,4 @@ Route::group([
         ->name('::idCategory::id');
 });
 
+//Route::get('/db', [\App\Http\Controllers\DbController::class, 'index']);

@@ -4,6 +4,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\News;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\NewsController as ForNews;
@@ -18,43 +20,39 @@ class NewsController extends Controller
             'route' => 'admin::news::create'
         ],
         [
-            'title' => 'Редактировать новость',
-            'route' => 'admin::news::index',
-        ],
-        [
             'title' => 'Добавить категорию',
             'route' => 'admin::news::categoryAdd',
         ],
     ];
 
 
-    public function index()
+    public function index(News $news)
     {
-        return view('admin.index', ['menu' => $this->adminMenu]);
+        return view('admin.index', ['menu' => $this->adminMenu, 'news' => $news->getAll()]);
 
     }
 
-    public function create(Request $request)
+    public function create()
     {
         return view('admin.create');
     }
 
-    public function save()
+    public function save(Request $request, News $news)
     {
-        //логика сохранения
+        $news->saveNews($request->article["id"], $request->article);
         return redirect()->route('admin::news::create');
 
     }
 
-
-    public function update()
+    public function update(Request $request, News $news)
     {
-        echo 'I,m update';
+        return view('admin.create',['news' => $news->getArticle($request->news)]);
     }
 
-    public function delete()
+    public function delete(Request $request, News $news)
     {
-        echo 'I,m delete';
+        $news::destroy($request->article["id"]);
+        return redirect()->route('admin::news::index');
     }
 
     public function categoryAdd()
@@ -65,14 +63,11 @@ class NewsController extends Controller
 
     public function addCategory(Request $request)
     {
-
         $categories = (new ForNews())->allCategories();
         $categories[] = $request['category'];
         return redirect()->route('admin::news::categoryAdd');
 
-
     }
-
 
 
 }

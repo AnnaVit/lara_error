@@ -2,6 +2,6 @@
 
 @section('article')
 
-    <p>{{$article}}</p>
+    <p>{{$article->content}}</p>
 
 @endsection

@@ -1,12 +1,26 @@
-<h1>Я шаблон</h1>
-<ul>
-    @foreach($menu as $item)
-        <li>
-            <a href="{{route($item['route'])}}">
-                {{$item['title']}}
-            </a>
+@extends('layouts.admin')
 
-        </li>
-    @endforeach
-</ul>
+@section('news')
+    @forelse($news as $id => $item)
 
+        <div class="news">
+            <h3>{{$item->title}}</h3>
+            <p>{{$item->content}}</p>
+
+            <form action="{{route('admin::news::update')}}" name="update" method="post">
+                @csrf
+                <p>
+                    <input type="hidden" name="news" value="{{$item->id}}">
+                </p>
+                <p>
+                    <input type="submit" value="редактировать">
+                </p>
+            </form>
+        </div>
+
+    @empty
+        Новостей нет
+    @endforelse
+
+
+@endsection
