@@ -9,6 +9,12 @@ class Category extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+
+        'id',
+        'name_category',
+    ];
+
     protected $table = 'category';
 
     public function news()
@@ -21,5 +27,25 @@ class Category extends Model
         return $this::query()
             ->pluck('name_category', 'id');
 
+    }
+
+    public function saveCategory($id, $data)
+    {
+        $this::findOrNew($id)
+            ->fill(['name_category' => $data->name_category])
+            ->save();
+    }
+
+    public function deleteCategory($category)
+    {
+        $this::destroy($category);
+    }
+
+    public function updateCategory($category, $name)
+    {
+        $this::find($category)
+            ->name_category = $name;
+
+        $this->save();
     }
 }

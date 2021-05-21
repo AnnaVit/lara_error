@@ -1,25 +1,49 @@
 
-<h1>я создаю новость</h1>
 @php
+
+//dd($categories);
+
 @endphp
-<label for="create">Создать новость</label>
+<label for="create">{{__('labels.create_news')}}</label>
+
 <form action="{{route('admin::news::save')}}" name="create" method="post">
     @csrf
     <p>
         <input type="hidden" name="article[id]" value="{{$news->id ?? ''}}">
         <input type="hidden" name="article[news_source]" value="1">
-        <input type="text" name="article[title]" placeholder="заголовок" value="{{$news->title ?? ''}}">
+        <input type="text" name="article[title]" placeholder="{{__('labels.title_news')}}" value="{{$news->title ?? ''}}">
+        @error('article.title')
+        <div class="alert alert-danger">{{$message}}</div>
+        @enderror
     </p>
     <p>
         <textarea name="article[content]" id="" cols="30" rows="10"
-                  placeholder="текст новости">{{$news->content ?? ''}}</textarea>
+                  placeholder="{{__('labels.text_news')}}">{{$news->content ?? ''}}</textarea>
+        @error('article.content')
+        <div class="alert alert-danger">{{$message}}</div>
+        @enderror
     </p>
     <p>
-        <input type="text" name="article[news_category]" placeholder="категория" value="{{$news->news_category ?? ''}}">
+        <select  name="article[news_category]" size="1">
+            <option disabled>{{__('labels.category_news')}}</option>
+            @isset($news)
+                <option selected value="{{$news->news_category }}">{{$categories[$news->news_category]}}</option>
+            @endisset
+
+            @foreach($categories as $categoryId => $categoryName)
+                <option value="{{$categoryId}}">"{{$categoryName}}"</option>
+            @endforeach
+        </select>
+
+        @error('article.news_category')
+        <div class="alert alert-danger">{{$message}}</div>
+        @enderror
+
     </p>
     <p>
-        <input type="submit" value="сохранить изменения">
+        <input type="submit" value="{{__('labels.save_news')}}">
     </p>
+
 </form>
 
 <form action="{{route('admin::news::delete')}}" name="delete" method="post">
@@ -28,7 +52,8 @@
         <input type="hidden" name="article[id]" value="{{$news->id ?? ''}}">
     </p>
     <p>
-        <input type="submit" value="удалить новость">
+        <input type="submit" value="{{__('labels.delete_news')}}">
     </p>
+
 </form>
 
