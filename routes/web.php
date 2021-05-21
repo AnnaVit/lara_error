@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use \App\Http\Controllers\NewsController;
 use \App\Http\Controllers\Admin\NewsController as AdminNewsController;
+use \App\Http\Controllers\Admin\CategoriesController as AdminCategoriesController;
 use App\Http\Controllers\MainController;
 /*
 |--------------------------------------------------------------------------
@@ -33,10 +34,17 @@ Route::group([
         ->name('update');
     Route::post('/delete', [ AdminNewsController::class, 'delete'])
         ->name('delete');
-    Route::get('/categoryAdd', [ AdminNewsController::class, 'categoryAdd'])
-        ->name('categoryAdd');
-    Route::post('/category', [ AdminNewsController::class, 'addCategory'])
+    Route::get('/createCategory', [ AdminCategoriesController::class, 'createCategory'])
+        ->name('createCategory');
+    Route::get('/category', [ AdminCategoriesController::class, 'category'])
         ->name('category');
+    Route::post('/saveCategory', [ AdminCategoriesController::class, 'saveCategory'])
+        ->name('saveCategory');
+    Route::post('/updateCategory', [AdminCategoriesController::class, 'updateCategory'])
+        ->name('updateCategory');
+    Route::post('/deleteCategory', [AdminCategoriesController::class, 'deleteCategory'])
+        ->name('deleteCategory');
+
 });
 /**Категории*/
 
