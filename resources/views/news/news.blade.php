@@ -16,4 +16,6 @@
     @empty
         Новостей нет
     @endforelse
+
+    {{$news->links()}}
 @endsection

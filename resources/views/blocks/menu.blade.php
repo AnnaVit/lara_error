@@ -2,7 +2,7 @@
     @foreach($menu as $item)
         <div>
             <a href="{{route($item['route'])}}">
-                {{$item['title']}}
+                {{__('labels.' . $item['title']) }}
             </a>
         </div>
 

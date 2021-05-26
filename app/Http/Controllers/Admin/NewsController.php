@@ -18,11 +18,11 @@ class NewsController extends Controller
 
     private $adminMenu = [
         [
-            'title' => 'Добавить новость',
+            'title' => 'create_news',
             'route' => 'admin::news::create'
         ],
         [
-            'title' => 'Добавить категорию',
+            'title' => 'create_category',
             'route' => 'admin::news::category',
         ],
     ];
@@ -42,7 +42,8 @@ class NewsController extends Controller
     public function save(AdminNewsSaveRequest $request, News $news)
     {
         $news->saveNews($request->article["id"], $request->article);
-        return redirect()->route('admin::news::create');
+        return redirect()->route('admin::news::create')
+            ->with('success', __('labels.data_saved'));
     }
 
     public function update(Request $request, News $news)

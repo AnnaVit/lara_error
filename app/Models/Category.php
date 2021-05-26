@@ -41,11 +41,4 @@ class Category extends Model
         $this::destroy($category);
     }
 
-    public function updateCategory($category, $name)
-    {
-        $this::find($category)
-            ->name_category = $name;
-
-        $this->save();
-    }
 }

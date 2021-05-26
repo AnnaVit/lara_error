@@ -24,7 +24,7 @@ class AdminNewsSaveRequest extends FormRequest
     public function rules()
     {
         return [
-            'article.title' => "required|string|min:3|max:50",
+            'article.title' => "required|string|min:10|max:50",
             'article.content' => "required|max:1024|",
             'article.news_category' => "required|exists:category,id|integer",
         ];
