@@ -30,17 +30,17 @@ Route::group([
         ->name('create');
     Route::post('/save', [ AdminNewsController::class, 'save'])
         ->name('save');
-    Route::post('/update', [ AdminNewsController::class, 'update'])
+    Route::get('/update', [ AdminNewsController::class, 'update'])
         ->name('update');
     Route::post('/delete', [ AdminNewsController::class, 'delete'])
         ->name('delete');
-    Route::get('/createCategory', [ AdminCategoriesController::class, 'createCategory'])
-        ->name('createCategory');
     Route::get('/category', [ AdminCategoriesController::class, 'category'])
         ->name('category');
+    Route::get('/createCategory', [ AdminCategoriesController::class, 'createCategory'])
+        ->name('createCategory');
     Route::post('/saveCategory', [ AdminCategoriesController::class, 'saveCategory'])
         ->name('saveCategory');
-    Route::post('/updateCategory', [AdminCategoriesController::class, 'updateCategory'])
+    Route::get('/updateCategory', [AdminCategoriesController::class, 'updateCategory'])
         ->name('updateCategory');
     Route::post('/deleteCategory', [AdminCategoriesController::class, 'deleteCategory'])
         ->name('deleteCategory');
@@ -63,4 +63,3 @@ Route::group([
         ->name('::idCategory::id');
 });
 
-//Route::get('/db', [\App\Http\Controllers\DbController::class, 'index']);

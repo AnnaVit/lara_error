@@ -15,6 +15,14 @@
             display: flex;
             justify-content: space-around;
         }
+
+        .pagination{
+            display: flex;
+            list-style-type: none;
+            width: 10%;
+            justify-content: space-between;
+
+        }
     </style>
 </head>
 <body>

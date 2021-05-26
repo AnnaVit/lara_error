@@ -2,11 +2,14 @@
 
 namespace App\Providers;
 
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 
 class AppServiceProvider extends ServiceProvider
 {
+
+
     /**
      * Register any application services.
      *
@@ -14,6 +17,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+
         //
     }
 
@@ -24,18 +28,29 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+
+        Paginator::useBootstrap();
+
+
         $menu = [
             [
-                'title' => 'Новости',
+                'title' => 'news',
                 'route' => 'news::category'
             ],
             [
-                'title' => 'Админка',
+                'title' => 'admin',
                 'route' => 'admin::news::index',
+            ],
+            [
+                'title' => 'en',
+                'route' =>'lang::en',
+            ],
+            [
+                'title' => 'ru',
+                'route' => 'lang::ru',
             ],
         ];
 
         View::share('menu', $menu);
     }
-
 }

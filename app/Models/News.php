@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use  Illuminate\Pagination\LengthAwarePaginator;
+
 class News extends Model
 {
     use HasFactory;
@@ -35,9 +37,11 @@ class News extends Model
 
     public function getByCategoryId(int $categoryId)
     {
+
         return $this::query()
             ->where('news_category', $categoryId)
-            ->get();
+            ->orderBy('updated_at', 'desc')
+            ->paginate(3);
     }
 
     public function getArticle($id)

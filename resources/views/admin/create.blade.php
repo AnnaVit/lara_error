@@ -41,7 +41,7 @@
 
     </p>
     <p>
-        <input type="submit" value="{{__('labels.save_news')}}">
+        <input type="submit" value="{{__('labels.save')}}">
     </p>
 
 </form>
@@ -52,8 +52,12 @@
         <input type="hidden" name="article[id]" value="{{$news->id ?? ''}}">
     </p>
     <p>
-        <input type="submit" value="{{__('labels.delete_news')}}">
+        <input type="submit" value="{{__('labels.delete')}}">
     </p>
 
 </form>
-
+@if(session('success'))
+    <div class="alert alert-success">
+        {{session('success')}}
+    </div>
+@endif

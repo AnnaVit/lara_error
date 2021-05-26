@@ -13,4 +13,6 @@ class MainController extends Controller
         return view('news.hello', ['name' => $name]);
 
     }
+
+
 }

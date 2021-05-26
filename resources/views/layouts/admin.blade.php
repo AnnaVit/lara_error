@@ -19,6 +19,7 @@
 
 <div class="content">
     @yield('news')
+    @yield('categories')
 </div>
 
 </body>
