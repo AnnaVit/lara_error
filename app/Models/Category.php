@@ -46,6 +46,6 @@ class Category extends Model
         $this::find($category)
             ->name_category = $name;
 
-        $this->save()1111111111111;
+        $this->save()22222222222222222;
     }
 }
